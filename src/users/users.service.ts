@@ -256,4 +256,41 @@ export class UsersService {
         const user = this.users.find(user => user.id === id);
         return user;
     }
+
+    create(user: {
+        name: string,
+        username: string,
+        email: string, address: { street: string, suite: string, city: string, zipcode: string, geo: { lat: string, lng: string } }, phone: string, website: string, company: { name: string, catchPhrase: string, bs: string }
+        role: 'ADMIN' | 'INTERN' | 'ENGINEER'
+    }) {
+        const userByHighId = [...this.users].sort((a, b) => b.id = a.id)
+        const newUser = {
+            id: userByHighId[0].id + 1,
+            ...user
+        }
+        this.users.push(newUser);
+        return newUser;
+    }
+
+    update(id: number, updateUser: {
+        name?: string,
+        username?: string,
+        email?: string,
+        role?: 'ADMIN' | 'INTERN' | 'ENGINEER'
+    }) {
+        let usersOne = this.users.map(user => {
+            if (user.id === id) {
+                return { ...user, ...updateUser }
+            }
+            return user;
+        })
+        return this.fineOne(id)
+    }
+
+    delete(id: number) {
+        const removedUser = this.fineOne(id);
+        this.users = this.users.filter(user => user.id !== id);
+
+        return removedUser;
+    }
 }
