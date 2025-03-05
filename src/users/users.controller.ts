@@ -15,13 +15,23 @@ export class UsersController {
     }
 
     @Post() // POST /users
-    create(@Body() user: {}) {
-        return user
+    create(@Body() user: {
+        name: string,
+        username: string,
+        email: string, address: { street: string, suite: string, city: string, zipcode: string, geo: { lat: string, lng: string } }, phone: string, website: string, company: { name: string, catchPhrase: string, bs: string }
+        role: 'ADMIN' | 'INTERN' | 'ENGINEER'
+    }) {
+        return this.userService.create(user);
     }
 
     @Patch(':id') //Patch /users/:id
-    update(@Param('id') id: string, @Body() userUpdate: {}) {
-        return { id, ...userUpdate }
+    update(@Param('id') id: string, @Body() userUpdate: {
+        name?: string,
+        username?: string,
+        email?: string,
+        role?: 'ADMIN' | 'INTERN' | 'ENGINEER'
+    }) {
+        return this.userService.update(+id, userUpdate);
     }
 
     @Delete(':id') //DELETE /users/:id

@@ -263,7 +263,7 @@ export class UsersService {
         email: string, address: { street: string, suite: string, city: string, zipcode: string, geo: { lat: string, lng: string } }, phone: string, website: string, company: { name: string, catchPhrase: string, bs: string }
         role: 'ADMIN' | 'INTERN' | 'ENGINEER'
     }) {
-        const userByHighId = [...this.users].sort((a, b) => b.id = a.id)
+        const userByHighId = [...this.users].sort((a, b) => b.id - a.id)
         const newUser = {
             id: userByHighId[0].id + 1,
             ...user
