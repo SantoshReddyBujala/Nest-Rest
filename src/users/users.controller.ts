@@ -2,11 +2,13 @@ import { Body, Controller, Delete, Get, Param, Patch, Post, Query, ParseIntPipe,
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { ApiQuery } from '@nestjs/swagger';
 
 @Controller('users')
 export class UsersController {
     constructor(private userService: UsersService) { }
     @Get() //GET /users or users?role=value&age=value
+    @ApiQuery({ name: 'role', required: false, type: String, description: 'ADMIN' })
     findAll(@Query('role') role?: 'ADMIN' | 'INTERN') {
         return this.userService.findAll(role);
     }
