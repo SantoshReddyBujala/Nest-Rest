@@ -16,3 +16,41 @@ export class CreateUserDto {
     @ApiProperty({ description: 'Role as a parameter', example: 'ADMIN', required: false })
     role: 'ADMIN' | 'INTERN' | 'ENGINEER';
 }
+
+export class CreateUserResponseDto {
+
+    @ApiProperty({ description: 'id', example: '100' })
+    id: string;
+
+    @IsString()
+    @IsNotEmpty()
+    @ApiProperty({ description: 'Enter a valid Name', example: 'Raghu' })
+    name: string;
+
+    @IsEmail()
+    @ApiProperty({ description: 'Enter a valid email id', example: 'test@test.co' })
+    email: string;
+
+    @IsEnum(['ADMIN', 'INTERN', 'ENGINEER'], { message: 'Valid role required' })
+    @ApiProperty({ description: 'Role as a parameter', example: 'ADMIN', required: false })
+    role: 'ADMIN' | 'INTERN' | 'ENGINEER';
+}
+
+export class GetUserResponseDto {
+
+    @ApiProperty({ description: 'id', example: '100' })
+    id: string;
+
+    @IsString()
+    @IsNotEmpty()
+    @ApiProperty({ description: 'Enter a valid Name', example: 'Raghu' })
+    name: string;
+
+    @IsEmail()
+    @ApiProperty({ description: 'Enter a valid email id', example: 'test@test.co' })
+    email: string;
+
+    @IsEnum(['ADMIN', 'INTERN', 'ENGINEER'], { message: 'Valid role required' })
+    @ApiProperty({ description: 'Role as a parameter', example: 'ADMIN', required: false })
+    role: 'ADMIN' | 'INTERN' | 'ENGINEER';
+}

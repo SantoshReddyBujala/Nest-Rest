@@ -7,6 +7,7 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('Nest example')
     .setDescription('The Users API description')
+    .addBearerAuth()
     .setVersion('1.0')
     .addTag('Users')
     .build();
