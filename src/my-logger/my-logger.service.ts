@@ -1,4 +1,7 @@
 import { ConsoleLogger, Injectable } from '@nestjs/common';
+import * as fs from 'fs';
+import { promises as fsPromises } from 'fs';
+import * as path from 'path';
 
 @Injectable()
 export class MyLoggerService extends ConsoleLogger {

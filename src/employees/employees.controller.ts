@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, Ip } from '@nestjs/common';
 import { EmployeesService } from './employees.service';
 import { Prisma } from '@prisma/client';
 import { Throttle, SkipThrottle } from '@nestjs/throttler';
@@ -15,7 +15,8 @@ export class EmployeesController {
 
   @SkipThrottle({ default: false })
   @Get()
-  findAll(@Query('role') role?: 'INTERN' | 'ADMIN' | 'ENGINEER') {
+  findAll(@Ip() ip: string, @Query('role') role?: 'INTERN' | 'ADMIN' | 'ENGINEER') {
+    console.log(ip);
     return this.employeesService.findAll(role);
   }
 
